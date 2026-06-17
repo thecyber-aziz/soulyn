@@ -6,36 +6,67 @@ import {
 
 import { HiOutlineMail } from "react-icons/hi";
 
+import RobotScene from "./RobotScene";
+
 const Footer = () => {
   return (
-    <footer className="relative bg-[#050505] text-white border-t border-white/10 overflow-hidden">
+    <footer
+      className="
+      relative
+      bg-[var(--bg)]
+      text-[var(--text)]
+      border-t
+      border-[var(--border)]
+      overflow-hidden
+    "
+    >
+      {/* 3D Model */}
+         <RobotScene />
 
       {/* Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-white/5 blur-[120px]" />
+      <div
+        className="
+        absolute
+        top-0
+        left-1/2
+        -translate-x-1/2
+        w-[500px]
+        h-[200px]
+        bg-white/10
+        blur-[120px]
+      "
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-16">
 
         {/* Top */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
 
-          {/* Logo */}
           <a href="#home">
             <h2 className="text-3xl md:text-4xl font-black tracking-wider">
               SOULYN.
             </h2>
           </a>
 
-          {/* Social Icons */}
           <div className="flex items-center gap-4">
 
             <a
               href="https://github.com/thecyber-aziz"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-white/10 bg-white/[0.03]
-              flex items-center justify-center text-lg
-              hover:bg-white hover:text-black hover:scale-110
-              transition-all duration-300"
+              className="
+              w-12 h-12
+              rounded-full
+              border
+              border-[var(--border)]
+              bg-[var(--card)]
+              flex
+              items-center
+              justify-center
+              text-lg
+              hover:scale-110
+              transition-all
+            "
             >
               <FaGithub />
             </a>
@@ -44,10 +75,19 @@ const Footer = () => {
               href="https://linkedin.com/in/aziz03"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-white/10 bg-white/[0.03]
-              flex items-center justify-center text-lg
-              hover:bg-white hover:text-black hover:scale-110
-              transition-all duration-300"
+              className="
+              w-12 h-12
+              rounded-full
+              border
+              border-[var(--border)]
+              bg-[var(--card)]
+              flex
+              items-center
+              justify-center
+              text-lg
+              hover:scale-110
+              transition-all
+            "
             >
               <FaLinkedinIn />
             </a>
@@ -56,20 +96,38 @@ const Footer = () => {
               href="https://instagram.com/aziz-ansari-03"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-white/10 bg-white/[0.03]
-              flex items-center justify-center text-lg
-              hover:bg-white hover:text-black hover:scale-110
-              transition-all duration-300"
+              className="
+              w-12 h-12
+              rounded-full
+              border
+              border-[var(--border)]
+              bg-[var(--card)]
+              flex
+              items-center
+              justify-center
+              text-lg
+              hover:scale-110
+              transition-all
+            "
             >
               <FaInstagram />
             </a>
 
             <a
-              href="mailto:@gmail.com"
-              className="w-12 h-12 rounded-full border border-white/10 bg-white/[0.03]
-              flex items-center justify-center text-lg
-              hover:bg-white hover:text-black hover:scale-110
-              transition-all duration-300"
+              href="mailto:abdulaziz86723@gmail.com"
+              className="
+              w-12 h-12
+              rounded-full
+              border
+              border-[var(--border)]
+              bg-[var(--card)]
+              flex
+              items-center
+              justify-center
+              text-lg
+              hover:scale-110
+              transition-all
+            "
             >
               <HiOutlineMail />
             </a>
@@ -78,39 +136,50 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="my-8 h-px bg-white/10" />
+        <div className="my-8 h-px bg-[var(--border)]" />
 
         {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
-
+        <div
+          className="
+          flex
+          flex-col
+          md:flex-row
+          items-center
+          justify-between
+          gap-4
+          text-sm
+        "
+        >
           <p>
             © 2026 SOULYN. All Rights Reserved.
           </p>
 
           <div className="flex items-center gap-6">
+
             <a
               href="#home"
-              className="hover:text-white transition"
+              className="hover:opacity-70 transition"
             >
               Home
             </a>
 
             <a
               href="#projects"
-              className="hover:text-white transition"
+              className="hover:opacity-70 transition"
             >
               Projects
             </a>
 
             <a
               href="#contact"
-              className="hover:text-white transition"
+              className="hover:opacity-70 transition"
             >
               Contact
             </a>
-          </div>
 
+          </div>
         </div>
+
       </div>
     </footer>
   );
