@@ -5,39 +5,50 @@ import {
 } from "react-icons/fa";
 
 import { HiOutlineMail } from "react-icons/hi";
-
 import RobotScene from "./RobotScene";
 
 const Footer = () => {
   return (
     <footer
       className="
-      relative
-      bg-[var(--bg)]
-      text-[var(--text)]
-      border-t
-      border-[var(--border)]
-      overflow-hidden
-    "
+        relative
+        bg-[var(--bg)]
+        text-[var(--text)]
+        border-t
+        border-[var(--border)]
+        overflow-hidden
+      "
     >
-      {/* 3D Model */}
-         <RobotScene />
+      {/* Robot Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <RobotScene />
+      </div>
 
       {/* Glow */}
       <div
         className="
-        absolute
-        top-0
-        left-1/2
-        -translate-x-1/2
-        w-[500px]
-        h-[200px]
-        bg-white/10
-        blur-[120px]
-      "
-      />
+          absolute
+          inset-0
+          z-10
+          pointer-events-none
+        "
+      >
+        <div
+          className="
+            absolute
+            top-0
+            left-1/2
+            -translate-x-1/2
+            w-[500px]
+            h-[200px]
+            bg-white/10
+            blur-[120px]
+          "
+        />
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-16">
+      {/* Footer Content */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 py-12 md:py-16">
 
         {/* Top */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -55,18 +66,18 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="
-              w-12 h-12
-              rounded-full
-              border
-              border-[var(--border)]
-              bg-[var(--card)]
-              flex
-              items-center
-              justify-center
-              text-lg
-              hover:scale-110
-              transition-all
-            "
+                w-12 h-12
+                rounded-full
+                border
+                border-[var(--border)]
+                bg-[var(--card)]
+                flex
+                items-center
+                justify-center
+                text-lg
+                hover:scale-110
+                transition-all
+              "
             >
               <FaGithub />
             </a>
@@ -76,18 +87,18 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="
-              w-12 h-12
-              rounded-full
-              border
-              border-[var(--border)]
-              bg-[var(--card)]
-              flex
-              items-center
-              justify-center
-              text-lg
-              hover:scale-110
-              transition-all
-            "
+                w-12 h-12
+                rounded-full
+                border
+                border-[var(--border)]
+                bg-[var(--card)]
+                flex
+                items-center
+                justify-center
+                text-lg
+                hover:scale-110
+                transition-all
+              "
             >
               <FaLinkedinIn />
             </a>
@@ -97,18 +108,18 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="
-              w-12 h-12
-              rounded-full
-              border
-              border-[var(--border)]
-              bg-[var(--card)]
-              flex
-              items-center
-              justify-center
-              text-lg
-              hover:scale-110
-              transition-all
-            "
+                w-12 h-12
+                rounded-full
+                border
+                border-[var(--border)]
+                bg-[var(--card)]
+                flex
+                items-center
+                justify-center
+                text-lg
+                hover:scale-110
+                transition-all
+              "
             >
               <FaInstagram />
             </a>
@@ -116,18 +127,18 @@ const Footer = () => {
             <a
               href="mailto:abdulaziz86723@gmail.com"
               className="
-              w-12 h-12
-              rounded-full
-              border
-              border-[var(--border)]
-              bg-[var(--card)]
-              flex
-              items-center
-              justify-center
-              text-lg
-              hover:scale-110
-              transition-all
-            "
+                w-12 h-12
+                rounded-full
+                border
+                border-[var(--border)]
+                bg-[var(--card)]
+                flex
+                items-center
+                justify-center
+                text-lg
+                hover:scale-110
+                transition-all
+              "
             >
               <HiOutlineMail />
             </a>
@@ -141,18 +152,16 @@ const Footer = () => {
         {/* Bottom */}
         <div
           className="
-          flex
-          flex-col
-          md:flex-row
-          items-center
-          justify-between
-          gap-4
-          text-sm
-        "
+            flex
+            flex-col
+            md:flex-row
+            items-center
+            justify-between
+            gap-4
+            text-sm
+          "
         >
-          <p>
-            © 2026 SOULYN. All Rights Reserved.
-          </p>
+          <p>© 2026 SOULYN. All Rights Reserved.</p>
 
           <div className="flex items-center gap-6">
 

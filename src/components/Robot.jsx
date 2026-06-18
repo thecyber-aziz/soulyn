@@ -1,40 +1,63 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import gsap from "gsap";
 
-export default function Robot({ isSpeaking = false }) {
+export default function Robot() {
   const groupRef = useRef();
-  const mouthRef = useRef();
+
   const headRef = useRef();
+  const leftArmRef = useRef();
+  const rightArmRef = useRef();
+  const leftLegRef = useRef();
+  const rightLegRef = useRef();
+  const eyeL = useRef();
+  const eyeR = useRef();
+
   const { mouse } = useThree();
-
-  const [mouthOpen, setMouthOpen] = useState(0);
-
-  useEffect(() => {
-    gsap.fromTo(
-      groupRef.current.position,
-      { y: -3 },
-      { y: 0, duration: 1.2, ease: "power3.out" }
-    );
-  }, []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
 
     if (!groupRef.current) return;
 
-    // floating AI
-    groupRef.current.position.y = Math.sin(t) * 0.1;
-
-    // follow mouse
+    // ✅ SMOOTH FOLLOW MOUSE (modern AI effect)
     groupRef.current.rotation.y = mouse.x * 0.8;
+    groupRef.current.rotation.x = -mouse.y * 0.4;
 
-    // talking animation
-    if (mouthRef.current) {
-      const target = isSpeaking ? Math.abs(Math.sin(t * 12)) * 0.6 : 0;
-      setMouthOpen(target);
+    // gentle floating
+    groupRef.current.position.y = Math.sin(t) * 0.15;
 
-      mouthRef.current.scale.y = target + 0.1;
+    const walk = Math.sin(t * 3);
+
+    // head motion
+    if (headRef.current) {
+      headRef.current.rotation.y = mouse.x * 0.5;
+    }
+
+    // arms animation
+    if (leftArmRef.current) {
+      leftArmRef.current.rotation.x = walk * 0.6;
+    }
+
+    if (rightArmRef.current) {
+      rightArmRef.current.rotation.x = -walk * 0.6;
+    }
+
+    // legs animation
+    if (leftLegRef.current) {
+      leftLegRef.current.rotation.x = -walk * 0.6;
+    }
+
+    if (rightLegRef.current) {
+      rightLegRef.current.rotation.x = walk * 0.6;
+    }
+
+    // blink effect
+    const blink = Math.sin(t * 4);
+    const visible = blink > 0.85;
+
+    if (eyeL.current && eyeR.current) {
+      eyeL.current.visible = visible;
+      eyeR.current.visible = visible;
     }
   });
 
@@ -44,41 +67,62 @@ export default function Robot({ isSpeaking = false }) {
       {/* HEAD */}
       <group ref={headRef} position={[0, 1.6, 0]}>
         <mesh>
-          <boxGeometry args={[0.9, 0.9, 0.9]} />
+          <boxGeometry args={[0.8, 0.8, 0.8]} />
           <meshStandardMaterial
             color="#00e5ff"
             emissive="#00e5ff"
-            emissiveIntensity={0.6}
+            emissiveIntensity={0.4}
           />
         </mesh>
 
-        {/* EYES */}
-        <mesh position={[-0.25, 0.1, 0.45]}>
+        <mesh ref={eyeL} position={[-0.2, 0.05, 0.42]}>
           <sphereGeometry args={[0.08]} />
-          <meshStandardMaterial emissive="red" emissiveIntensity={2} />
+          <meshStandardMaterial color="red" emissive="red" emissiveIntensity={2} />
         </mesh>
 
-        <mesh position={[0.25, 0.1, 0.45]}>
+        <mesh ref={eyeR} position={[0.2, 0.05, 0.42]}>
           <sphereGeometry args={[0.08]} />
-          <meshStandardMaterial emissive="red" emissiveIntensity={2} />
-        </mesh>
-
-        {/* 👄 MOUTH (talking) */}
-        <mesh ref={mouthRef} position={[0, -0.25, 0.45]}>
-          <boxGeometry args={[0.3, 0.05, 0.05]} />
-          <meshStandardMaterial color="black" emissive="cyan" emissiveIntensity={1.5} />
+          <meshStandardMaterial color="red" emissive="red" emissiveIntensity={2} />
         </mesh>
       </group>
 
       {/* BODY */}
-      <mesh position={[0, 0.2, 0]}>
-        <boxGeometry args={[1.2, 1.5, 0.7]} />
-        <meshStandardMaterial
-          color="#111827"
-          emissive="#1d4ed8"
-          emissiveIntensity={0.3}
-        />
+      <mesh position={[0, 0.3, 0]}>
+        <boxGeometry args={[1.2, 1.4, 0.7]} />
+        <meshStandardMaterial color="#111827" />
       </mesh>
+
+      {/* LEFT ARM */}
+      <group ref={leftArmRef} position={[-1, 0.6, 0]}>
+        <mesh>
+          <boxGeometry args={[0.3, 1.2, 0.3]} />
+          <meshStandardMaterial color="#22c55e" />
+        </mesh>
+      </group>
+
+      {/* RIGHT ARM */}
+      <group ref={rightArmRef} position={[1, 0.6, 0]}>
+        <mesh>
+          <boxGeometry args={[0.3, 1.2, 0.3]} />
+          <meshStandardMaterial color="#f97316" />
+        </mesh>
+      </group>
+
+      {/* LEFT LEG */}
+      <group ref={leftLegRef} position={[-0.35, -1.2, 0]}>
+        <mesh>
+          <boxGeometry args={[0.4, 1.2, 0.4]} />
+          <meshStandardMaterial color="#3b82f6" />
+        </mesh>
+      </group>
+
+      {/* RIGHT LEG */}
+      <group ref={rightLegRef} position={[0.35, -1.2, 0]}>
+        <mesh>
+          <boxGeometry args={[0.4, 1.2, 0.4]} />
+          <meshStandardMaterial color="#ec4899" />
+        </mesh>
+      </group>
 
     </group>
   );

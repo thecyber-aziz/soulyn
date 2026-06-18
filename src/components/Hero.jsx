@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
+
+
 const Hero = () => {
   const heroRef = useRef(null);
   const titleRef = useRef([]);
@@ -69,7 +71,7 @@ const Hero = () => {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a] text-white pt-24 md:pt-0"
+      className="relative min-h-screen  flex items-center justify-center overflow-hidden bg-[#0a0a0a] text-white pt-24 md:pt-0"
     >
       {/* Background Blobs */}
       <div className="absolute inset-0 overflow-hidden">
